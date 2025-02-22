@@ -1,70 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cody's Music</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    r<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  </head>
+  <body>
     <div class="container">
-        <aside class="sidebar">
-            <h2>Cody's Music</h2>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">My Library</a></li>
-            </ul>
-        </aside>
-        <main class="main-content">
-            <header>
-              <h1><span id='greeting'>Welcome back</span></h1>
-            </header>
-            <section class='carousel'>
-              <div class='playlist-slide'>
-                <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png" alt="Album Cover">
-                <h3>Album Title</h3>
-              </div>
-            </section>
-            <h2 class='section-divider-heading'>Continue listening</h2>
-            <section class="carousel">
-              <div class="slide">
-                <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png" alt="Album Cover">
-                <h3>Song Title</h3>
-                <p>Artist Name</p>
-              </div>
-              <div class="slide">
-                <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png" alt="Album Cover">
-                <h3>Song Title</h3>
-                <p>Artist Name</p>
-              </div>
-              <div class="slide">
-                <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png" alt="Album Cover">
-                <h3>Song Title</h3>
-                <p>Artist Name</p>
-              </div>
-            </section>
-            <section class="music-section">
-                <h2>Music Library</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Song Title</th>
-                            <th>Artist</th>
-                            <th>Album</th>
-                            <th>Duration</th>
-                        </tr>
-                    </thead>
-                    <tbody id="music-list">
-                        <!-- Music list will be populated here -->
-                    </tbody>
-                </table>
-            </section>
-        </main>
+      <aside class="sidebar" id="sidebar">
+        <h2>Cody's Music</h2>
+        <ul style="margin-bottom: 25px;">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#queue">Queue</a></li>
+          <li><a href="#library">My Library</a></li>
+          <li><a href="#playlists">Playlists</a></li>
+          <li><a href="#">Help</a></li>
+        </ul>
+        <hr style="border: 1px solid #333;">
+        <h3>Playlists</h3>
+        <ul>
+          <li><a href="#">Playlist</a></li>
+        </ul>
+      </aside>
+      <main class="main-content">
+        <section id="home">
+          <header>
+            <h1 style="font-size: xx-large;"><span id='greeting'>Welcome back</span></h1>
+          </header>
+          <section class='carousel'>
+            <div class='playlist-slide'>
+              <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png" alt="Album Cover">
+              <h3>Album Title</h3>
+            </div>
+          </section>
+          <h2 class='section-divider-heading'>Continue listening</h2>
+          <section class="carousel">
+            <div class="slide">
+              <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png" alt="Album Cover">
+              <h3>Song Title</h3>
+              <p>Artist Name</p>
+            </div>
+            <div class="slide">
+              <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png" alt="Album Cover">
+              <h3>Song Title</h3>
+              <p>Artist Name</p>
+            </div>
+            <div class="slide">
+              <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png" alt="Album Cover">
+              <h3>Song Title</h3>
+              <p>Artist Name</p>
+            </div>
+          </section>
+          <section class="music-section">
+            <h2>Music Library</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Song Title</th>
+                  <th>Artist</th>
+                  <th>Album</th>
+                  <th>Duration</th>
+                </tr>
+              </thead>
+              <tbody id="music-list">
+                <!-- Music list will be populated here -->
+              </tbody>
+            </table>
+          </section>
+        </section>
+        <div id="library" style="display: none;">
+          <input type="file" id="fileInput" multiple accept="audio/*">
+          <button id="uploadButton">Upload Songs</button>
+          <button onclick="localStorage.clear();location.reload()">Clear EVERYTHING</button>
+          <h2>Library</h2>
+          <ul id="libraryList"></ul>
+        </div>
+        <div id="playlists" style="display: none;">
+          <h2>Playlists</h2>
+          <input type="text" id="newPlaylistName" placeholder="Playlist Name">
+          <button id="createPlaylist">Create Playlist</button>
+          <ul id="playlistList"></ul>
+          <div id="playlistMenu" style="display: none;" class="playlist-menu">
+            <h3 id="currentPlaylistName"></h3>
+            <button id="addSongsToPlaylist">Add Songs</button>
+            <button id="playPlaylistButton">Play Playlist</button>
+            <div class="playlist-songs">
+              <h4>Playlist Songs</h4>
+              <ul id="playlistSongsList"></ul>
+            </div>
+            <div class="library-songs" style="display: none;" id="librarySongsBox">
+              <h4>Library Songs-Add</h4>
+              <ul id="playlistAddList"></ul>
+            </div>
+          </div>
+        </div>
+        <div id="queue" style="display: none;">
+          <h2>Queue</h2>
+          <ul id="queueList"></ul>
+        </div>
+      </main>
+      <aside class="bottombar">
+        <div id="player">
+          <div id="playerControls">
+              <button id="prevButton">Previous</button>
+              <button id="playPauseButton">Play</button>
+              <button id="nextButton">Next</button>
+          </div>
+          <div id="progressBarContainer">
+              <span id="timeDisplay">0:00</span>
+              <input type="range" id="progressBar" value="0">
+              <span id="durationDisplay">0:00</span>
+          </div>
+          <audio id="audioPlayer"></audio>
+        </div>
+      </aside>
     </div>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
